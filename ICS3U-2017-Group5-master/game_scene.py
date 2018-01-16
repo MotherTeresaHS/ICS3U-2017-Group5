@@ -30,9 +30,6 @@ class GameScene(Scene):
         self.football_drop_speed = 17
         self.footballs = []
         self.score = 0
-        self.counter = 3
-        self.life_bar_position = Vector2()
-         
         # adds the background texture
         self.bg = Vector2()   
         self.bg.x = self.size.x / 2
@@ -49,32 +46,35 @@ class GameScene(Scene):
         self.character = SpriteNode('./assets/sprites/football_character.png',
                                      parent = self,
                                      position = self.character_position,
-                                     size = self.size /4)
+                                     size = self.size / 3)
         
         # adds in the move left button
         move_left_button_position = self.center_of_screen
         move_left_button_position.x = 100
-        self.move_left_button = SpriteNode('./assets/sprites/move_left.PNG',
+        self.move_left_button = SpriteNode('./assets/sprites/move_left_button.png',
                                             parent = self,
                                             position = move_left_button_position,
-                                            size = self.size / 8)
-                                   
+                                            size = self.size / 6,
+                                            alpha = 0.75)
+                                     
         #adds the move right button
         move_right_button_position = self.center_of_screen
-        move_right_button_position.x = 850
-        self.move_right_button = SpriteNode('./assets/sprites/move_right.PNG',
+        move_right_button_position.x = 900
+        self.move_right_button = SpriteNode('./assets/sprites/move_right_button.png',
                                              parent = self,
                                              position = move_right_button_position,
-                                             size = self.size / 8)
+                                             size = self.size / 6,
+                                             alpha = 0.75)
         
         #adds the pause button
         pause_button_position = self.center_of_screen
         pause_button_position.x = 100
         pause_button_position.y = 675
-        self.pause = SpriteNode('./assets/sprites/pause_button.PNG',
+        self.pause = SpriteNode('./assets/sprites/pause_button.png',
                                  parent = self,
                                  position = pause_button_position,
-                                 size = self.size / 2) 
+                                 size = self.size / 8,
+                                 alpha = 0.5) 
         
         # adds the score board in the top right corner
         self.scoreboard_position.x = 900
@@ -84,14 +84,10 @@ class GameScene(Scene):
                                      parent = self,
                                      position = self.scoreboard_position)
         
-        # adds the lives bar under the score board
-        self.life_bar_position.x = 900
-        self.life_bar_position.y = self.size_of_screen_y - 150
-        self.life_bar_label = LabelNode(text = 'Lives: 0',
-                                     font=('Copperplate', 46),
-                                     parent = self,
-                                     position = self.life_bar_position)
+        
     def update(self):
+        
+        
         
         # moves the pair of hands when a move button is pressed
         if self.left_button_down == True:
@@ -115,17 +111,7 @@ class GameScene(Scene):
                     #self.footballs.remove(football)
                     self.score = self.score + 1
                     self.scoreboard_label.text = 'Score: ' + str(self.score)
-                    
-            # tracks remaining lives
-            for football in self.footballs:
-                if football.position.y < 0:
-                    football.remove_from_parent()
-                    self.footballs.remove(football)
-                    self.counter = self.counter - 1
-                    self.life_bar_label = 'Lives: ' + str(self.counter)
-                   
-            else:
-                pass
+    
     def touch_began(self, touch):
         # function is called every time a move button is pressed
         
@@ -154,11 +140,11 @@ class GameScene(Scene):
         
         football_ending_location = deepcopy(self.screen_size)
         football_ending_location.x = random.randint(100, self.screen_size.x - 100)
-        football_ending_location.y = -200
+        football_ending_location.y = -100
         
         self.footballs.append(SpriteNode('./assets/sprites/football.png',
                                          position = football_starting_position,
-                                         parent = self, size = self.size / 4))
+                                         parent = self, size = self.size / 5))
         
         footballMoveAction = Action.move_to(football_ending_location.x, 
                                          football_ending_location.y, 
