@@ -8,6 +8,7 @@ this scene shows the main game
 from scene import *
 import ui
 
+from pause_scene import * 
 from main_menu_scene import *
 from numpy import random
 from copy import deepcopy
@@ -32,7 +33,8 @@ class GameScene(Scene):
         self.score = 0
         self.counter = 3
         self.life_bar_position = Vector2()
-         
+        self.center_of_screen = self.size / 2
+        
         # adds the background texture
         self.bg = Vector2()   
         self.bg.x = self.size.x / 2
@@ -71,10 +73,10 @@ class GameScene(Scene):
         pause_button_position = self.center_of_screen
         pause_button_position.x = 100
         pause_button_position.y = 675
-        self.pause = SpriteNode('./assets/sprites/pause_button.PNG',
+        self.pause = SpriteNode('./assets/sprites/pause.PNG',
                                  parent = self,
                                  position = pause_button_position,
-                                 size = self.size / 2) 
+                                 size = self.size / 10) 
         
         # adds the score board in the top right corner
         self.scoreboard_position.x = 900
@@ -87,12 +89,12 @@ class GameScene(Scene):
         # adds the lives bar under the score board
         self.life_bar_position.x = 900
         self.life_bar_position.y = self.size_of_screen_y - 150
-        self.life_bar_label = LabelNode(text = 'Lives: 0',
+        self.life_bar_label = LabelNode(text = 'Lives: 3',
                                      font=('Copperplate', 46),
                                      parent = self,
                                      position = self.life_bar_position)
     def update(self):
-        
+        # updates 60 times a second
         # moves the pair of hands when a move button is pressed
         if self.left_button_down == True:
             self.character.run_action(Action.move_by(-1*self.character_movement_speed, 0.0, 0.1))
@@ -123,9 +125,14 @@ class GameScene(Scene):
                     self.footballs.remove(football)
                     self.counter = self.counter - 1
                     self.life_bar_label = 'Lives: ' + str(self.counter)
-                   
-            else:
-                pass
+                    
+        '''if counter == 0:
+            game_over_text = LabelNode(text = 'GAME OVER!',
+                                      font=('Copperplate', 72),
+                                      parent = self,
+                                      position = self.center_of_screen)
+                   '''
+        
     def touch_began(self, touch):
         # function is called every time a move button is pressed
         
@@ -138,12 +145,15 @@ class GameScene(Scene):
             self.right_button_down = True
         #self.generate_new_football()
         
+        
+        
     def touch_ended(self, touch):
         # this function is called everytime the user removes their finger from the screen
         # the character icon will stop moving
         self.left_button_down = False
         self.right_button_down = False
-        
+        if self.pause.frame.contains_point(touch.location):
+            self.present_modal_scene(PauseScene())
         
     def generate_new_football(self):
         # generates a new football to come down the screen
