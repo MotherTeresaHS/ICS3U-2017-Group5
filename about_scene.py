@@ -18,7 +18,7 @@ class AboutScene(Scene):
                                      parent = self, 
                                      size = self.size)
                                      
-        self.about_text = LabelNode(text = 'Design by: Malcolm McCarthy',
+        self.about_text = LabelNode(text = 'Designed by: Malcolm McCarthy',
                                       font=('Copperplate', 50),
                                       parent = self,
                                       position = self.size / 2,
@@ -30,6 +30,7 @@ class AboutScene(Scene):
         self.back_button = SpriteNode('./assets/sprites/back.PNG',
                                        parent = self,
                                        position = back_button_position)
-        def touch_ended(self, touch):                           
-            if self.back_button.frame.contains_point(touch.location):
-                self.dismiss_modal_scene()
+    def touch_began(self, touch):
+        
+        if self.back_button.frame.contains_point(touch.location):
+            self.dismiss_modal_scene()
