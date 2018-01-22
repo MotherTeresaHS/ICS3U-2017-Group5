@@ -18,12 +18,12 @@ class AboutScene(Scene):
                                      parent = self, 
                                      size = self.size)
                                      
-        self.about_text = LabelNode(text = 'Designed by: Malcolm McCarthy',
-                                      font=('Copperplate', 50),
+        self.about_text = LabelNode(text = 'Designed by: Malcolm McCarthy, art from www.opengameart.org',
+                                      font=('Copperplate', 30),
                                       parent = self,
                                       position = self.size / 2,
                                       scale = 0.75)
-                                      
+        
         back_button_position = self.size
         back_button_position.x = 100
         back_button_position.y = back_button_position.y - 100
