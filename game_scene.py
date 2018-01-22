@@ -13,7 +13,7 @@ from pause_scene import *
 from main_menu_scene import *
 from numpy import random
 from copy import deepcopy
-
+import sound
 class GameScene(Scene):
     def setup(self):
     	
@@ -32,7 +32,7 @@ class GameScene(Scene):
         self.football_drop_speed = 10
         self.footballs = []
         self.score = 0
-        self.counter = 3
+        self.counter = 1
         self.life_bar_position = Vector2()
         self.center_of_screen = self.size / 2
         self.alive = True
@@ -91,7 +91,7 @@ class GameScene(Scene):
         # adds the lives bar under the score board
         self.life_bar_position.x = 900
         self.life_bar_position.y = self.size_of_screen_y - 150
-        self.life_bar_label = LabelNode(text = 'Lives: 3',
+        self.life_bar_label = LabelNode(text = 'Lives: 1',
                                      font=('Copperplate', 46),
                                      parent = self,
                                      position = self.life_bar_position)
@@ -119,7 +119,7 @@ class GameScene(Scene):
                     #self.footballs.remove(football)
                     self.score = self.score + 1
                     self.scoreboard_label.text = 'Score: ' + str(self.score)
-                    
+                    sound.play_effect('8ve:8ve-beep-timber')
             
                     
             # tracks remaining lives
@@ -130,8 +130,10 @@ class GameScene(Scene):
                     self.counter = self.counter - 1
                     self.life_bar_label.text = 'Lives: ' + str(self.counter)
                     
+                    
         if self.counter == 0:
             
+            sound.play_effect('8ve:8ve-slide-magic')
             self.alive = False
             #screen turns black once game is over
             self.background = SpriteNode(color = 'black',
@@ -154,9 +156,10 @@ class GameScene(Scene):
             self.main_menu_button = SpriteNode('./assets/sprites/main_menu.PNG',
                                             parent = self,
                                             position = self.main_menu_position,
-                                            size = self.size * 2) 
-            if self.character.position.x >= self.size_of_screen_x:
-                self.character_position = self.size_of_screen_x - 75
+                                            size = self.size) 
+        
+        if self.character.position.x >= self.size_of_screen_x:
+            self.character_position = self.size_of_screen_x - 75
         
     def touch_began(self, touch):
         # function is called every time a move button is pressed
