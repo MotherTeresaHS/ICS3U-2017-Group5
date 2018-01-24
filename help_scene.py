@@ -7,7 +7,7 @@ class HelpScene(Scene):
         
         center_of_screen = self.size/2
         
-        self.tutorial = SpriteNode('./assets/sprites/tutorial.JPG',
+        self.tutorial = SpriteNode('./assets/sprites/tutorial.PNG',
         	                         position = self.size / 2, 
                                    parent = self, 
                                    size = self.size)

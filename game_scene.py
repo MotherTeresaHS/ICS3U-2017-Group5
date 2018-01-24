@@ -41,7 +41,7 @@ class GameScene(Scene):
         self.background_position = Vector2()   
         self.background_position.x = self.size.x / 2
         self.background_position.y = self.size.y / 2
-        self.background = SpriteNode('./assets/sprites/football_field.JPG',
+        self.background = SpriteNode('./assets/sprites/football_field.PNG',
                                      position = self.background_position,
                                      parent = self,
                                      size = self.size,
