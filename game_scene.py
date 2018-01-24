@@ -8,8 +8,8 @@ this scene shows the main game
 from scene import *
 import ui
 
-from game_over_scene import *
-from pause_scene import * 
+
+
 from main_menu_scene import *
 from numpy import random
 from copy import deepcopy
