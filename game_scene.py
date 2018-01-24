@@ -106,7 +106,7 @@ class GameScene(Scene):
         if (self.right_button_down == True) and (self.character.position.x < self.size.x - 30):
             self.character.run_action(Action.move_by(self.character_movement_speed, 0.0, 0.1))
             
-        create_new_ball_chance = random.randint(1,101)
+        create_new_ball_chance = random.randint(1,120)
         if create_new_ball_chance <= self.football_generation_speed:
             self.generate_new_football()
             
