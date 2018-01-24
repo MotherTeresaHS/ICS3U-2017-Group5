@@ -72,13 +72,13 @@ class GameScene(Scene):
                                              size = self.size / 8)
         
         #adds the pause button
-        leave_button_position = self.center_of_screen
-        leave_button_position.x = 100
-        leave_button_position.y = 675
+        self.leave_button_position = Vector2()
+        self.leave_button_position.x = 100
+        self.leave_button_position.y = 675
         self.leave = SpriteNode('./assets/sprites/leave.PNG',
                                  parent = self,
-                                 position = leave_button_position,
-                                 size = self.size ) 
+                                 position = self.leave_button_position,
+                                 size = self.size / 8) 
         
         # adds the score board in the top right corner
         self.scoreboard_position.x = 900
@@ -151,12 +151,14 @@ class GameScene(Scene):
                                          position = self.game_over_position)
              # button to return to main menu                        
             self.main_menu_position = Vector2()
-            self.main_menu_position.x = 450
+            self.main_menu_position.x = 500
             self.main_menu_position.y = 350
             self.main_menu_button = SpriteNode('./assets/sprites/main_menu.PNG',
                                             parent = self,
-                                            position = self.main_menu_position,
-                                            size = self.size) 
+                                            position = self.main_menu_position)
+                                            
+        
+            
         
         if self.character.position.x >= self.size_of_screen_x:
             self.character_position = self.size_of_screen_x - 75
@@ -188,7 +190,9 @@ class GameScene(Scene):
         if self.alive == False:
             if self.main_menu_button.frame.contains_point(touch.location):
                 self.dismiss_modal_scene()
-    
+        else:
+            pass
+       
     def generate_new_football(self):
         # generates a new football to come down the screen
         
