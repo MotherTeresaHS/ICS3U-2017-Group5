@@ -12,8 +12,8 @@ class HelpScene(Scene):
                                    parent = self, 
                                    size = self.size)
         back_button_position = self.size
-        back_button_position.x = 525
-        back_button_position.y = 725
+        back_button_position.x = self.size.x - 525
+        back_button_position.y = self.size.y - 50
         self.back_button = SpriteNode('./assets/sprites/back.PNG',
                                       position = back_button_position,
                                       parent = self)
