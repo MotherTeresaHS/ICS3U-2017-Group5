@@ -58,6 +58,7 @@ class GameScene(Scene):
         # adds in the move left button
         move_left_button_position = self.center_of_screen
         move_left_button_position.x = 100
+        move_left_button_position.y = self.size.y - 650
         self.move_left_button = SpriteNode('./assets/sprites/move_left.PNG',
                                             parent = self,
                                             position = move_left_button_position,
