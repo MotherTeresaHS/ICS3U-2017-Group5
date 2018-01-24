@@ -1,4 +1,4 @@
-# Created by: Malcolm McCarthy
+# Created by: Mr. Coxall
 # Created on: Jan 2018
 # Created for: ICS3U
 # This program is the first file in a multi-scene game template

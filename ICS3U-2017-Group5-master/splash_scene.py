@@ -35,30 +35,3 @@ class SplashScene(Scene):
         if not self.presented_scene and time.time() - self.start_time > 1:
             self.present_modal_scene(MainMenuScene())
     
-    def touch_began(self, touch):
-        # this method is called, when user touches the screen
-        pass
-    
-    def touch_moved(self, touch):
-        # this method is called, when user moves a finger around on the screen
-        pass
-    
-    def touch_ended(self, touch):
-        # this method is called, when user releases a finger from the screen
-        pass
-    
-    def did_change_size(self):
-        # this method is called, when user changes the orientation of the screen
-        # thus changing the size of each dimension
-        pass
-    
-    def pause(self):
-        # this method is called, when user touches the home button
-        # save anything before app is put to background
-        pass
-    
-    def resume(self):
-        # this method is called, when user place app from background 
-        # back into use. Reload anything you might need.
-        pass
-    
