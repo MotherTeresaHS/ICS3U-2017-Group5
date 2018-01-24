@@ -49,7 +49,7 @@ class GameScene(Scene):
         
         # adds the character icon
         self.character_position = self.center_of_screen
-        self.character_position.y = 100
+        self.character_position.y = self.size.y - 650
         self.character = SpriteNode('./assets/sprites/football_character.png',
                                      parent = self,
                                      position = self.character_position,
@@ -65,7 +65,8 @@ class GameScene(Scene):
                                    
         #adds the move right button
         move_right_button_position = self.center_of_screen
-        move_right_button_position.x = 850
+        move_right_button_position.x = self.size.x - 174
+        move_right_button_position.y = self.size.y - 650
         self.move_right_button = SpriteNode('./assets/sprites/move_right.PNG',
                                              parent = self,
                                              position = move_right_button_position,
@@ -74,14 +75,14 @@ class GameScene(Scene):
         #adds the pause button
         self.leave_button_position = Vector2()
         self.leave_button_position.x = 100
-        self.leave_button_position.y = 675
+        self.leave_button_position.y = self.size.y - 100
         self.leave = SpriteNode('./assets/sprites/leave.PNG',
                                  parent = self,
                                  position = self.leave_button_position,
                                  size = self.size / 8) 
         
         # adds the score board in the top right corner
-        self.scoreboard_position.x = 900
+        self.scoreboard_position.x = self.size.x - 150
         self.scoreboard_position.y = self.size_of_screen_y - 50
         self.scoreboard_label = LabelNode(text = 'Score: 0',
                                      font=('Copperplate', 46),
@@ -89,7 +90,7 @@ class GameScene(Scene):
                                      position = self.scoreboard_position)
         
         # adds the lives bar under the score board
-        self.life_bar_position.x = 900
+        self.life_bar_position.x = self.size.x - 150
         self.life_bar_position.y = self.size_of_screen_y - 150
         self.life_bar_label = LabelNode(text = 'Lives: 1',
                                      font=('Copperplate', 46),
@@ -143,16 +144,16 @@ class GameScene(Scene):
                                       scale = 1.15)
             # game over text
             self.game_over_position = Vector2()
-            self.game_over_position.x = 500
-            self.game_over_position.y = 500
+            self.game_over_position.x = self.size.x - 500
+            self.game_over_position.y = self.size.y - 300
             self.game_over_text = LabelNode(text = 'GAME OVER!',
                                          font = ('Copperplate', 80),
                                          parent = self,
                                          position = self.game_over_position)
              # button to return to main menu                        
             self.main_menu_position = Vector2()
-            self.main_menu_position.x = 500
-            self.main_menu_position.y = 350
+            self.main_menu_position.x = self.size.x - 500
+            self.main_menu_position.y = self.size.y - 400
             self.main_menu_button = SpriteNode('./assets/sprites/main_menu.PNG',
                                             parent = self,
                                             position = self.main_menu_position)
