@@ -58,6 +58,7 @@ class GameScene(Scene):
         # adds in the move left button
         move_left_button_position = self.center_of_screen
         move_left_button_position.x = 100
+        move_left_button_position.y = self.size.y - 650
         self.move_left_button = SpriteNode('./assets/sprites/move_left.PNG',
                                             parent = self,
                                             position = move_left_button_position,
@@ -105,7 +106,7 @@ class GameScene(Scene):
         if (self.right_button_down == True) and (self.character.position.x < self.size.x - 30):
             self.character.run_action(Action.move_by(self.character_movement_speed, 0.0, 0.1))
             
-        create_new_ball_chance = random.randint(1,101)
+        create_new_ball_chance = random.randint(1,120)
         if create_new_ball_chance <= self.football_generation_speed:
             self.generate_new_football()
             

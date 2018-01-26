@@ -43,9 +43,9 @@ class MainMenuScene(Scene):
         self.about_button = SpriteNode('./assets/sprites/about_button.png',
                                        parent = self,
                                        position = about_button_position)
-        title_position = Vector2()
-        title_position.x = title_position.x + 500
-        title_position.y = title_position.y + 600
+        title_position = self.size / 2
+        title_position.x = title_position.x 
+        title_position.y = title_position.y + 200
         self.title= LabelNode(text = 'FOOTBALLER',
                                   font = ('Copperplate', 80),
                                   parent = self,
