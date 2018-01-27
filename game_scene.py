@@ -32,7 +32,7 @@ class GameScene(Scene):
         self.football_drop_speed = 10
         self.footballs = []
         self.score = 0
-        self.counter = 1
+        self.counter = 3 # Mr. Coxall changed this to 3
         self.life_bar_position = Vector2()
         self.center_of_screen = self.size / 2
         self.alive = True
@@ -93,7 +93,8 @@ class GameScene(Scene):
         # adds the lives bar under the score board
         self.life_bar_position.x = self.size.x - 150
         self.life_bar_position.y = self.size_of_screen_y - 150
-        self.life_bar_label = LabelNode(text = 'Lives: 1',
+        # Mr. Coxall this should not have been hard coded to Lives: 1
+        self.life_bar_label = LabelNode('Lives: ' + str(self.counter),
                                      font=('Copperplate', 46),
                                      parent = self,
                                      position = self.life_bar_position)
@@ -198,12 +199,16 @@ class GameScene(Scene):
     def generate_new_football(self):
         # generates a new football to come down the screen
         
-        football_starting_position = deepcopy(self.screen_size) 
-        football_starting_position.x = random.randint(100, self.screen_size.x - 100)
-        football_starting_position.y = football_starting_position.y + 200
+        # Mr. Coxall
+        # I had to correct this section to not get a low >=high value error
+        football_starting_position = Vector2()
+        # you had no variable called self.screen_size.x
+        # therefor you were picking a random number between 100 and -100 !!!
+        football_starting_position.x = random.randint(100, self.size_of_screen_x - 100)
+        football_starting_position.y = self.size_of_screen_y + 200
         
-        football_ending_location = deepcopy(self.screen_size)
-        football_ending_location.x = random.randint(100, self.screen_size.x - 100)
+        football_ending_location = Vector2()
+        football_ending_location.x = random.randint(100, self.size_of_screen_x - 100)
         football_ending_location.y = - 200
         
         self.footballs.append(SpriteNode('./assets/sprites/football.png',
